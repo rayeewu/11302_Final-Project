@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>One Pick 音樂日記本</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+</head>
+<body>
+  <div id="home-section" >
+    <h1>🎵 One Pick 音樂日記本</h1>
+    <h2 id="welcome-slogan">歡迎回來！今天心情如何呢？</h2>
+    <div id="vinyl-container">
+      <img src="disk.png" alt="旋轉黑膠" id="vinyl">
+    </div>
+  </div>
+
+  <button id="menu-button" onclick="toggleMenu()" style="display: none;">☰</button>
+  <div id="side-menu">
+    <div id="buttons-container" style="padding: 5px; ">
+      <button onclick="showSection('home-section')">主頁</button>
+      <button onclick="showSection('diary-section')">新增日記</button>
+      <button onclick="showSection('history-section')">歷史紀錄</button>
+      <button onclick="showSection('background-section')">背景設定</button>
+      <button onclick="signOut()">登出</button>
+    </div>
+  </div>
+
+  <div id="auth-section">
+    <div class="container">
+      <input type="email" id="email" placeholder="Email">
+      <input type="password" id="password" placeholder="Password">
+      <button onclick="signIn()">登入</button>
+      <button onclick="signUp()">註冊</button>
+    </div>
+  </div>
+
+
+  <div id="diary-section" style="display:none;">
+    <div class="container">
+      <h2>新增日記</h2>
+      <input type="date" id="diaryDate" />
+      <input type="text" id="musicLink" placeholder="今天的 One Pick 音樂連結">
+      <select id="mood">
+        <option value="😀">😀 開心</option>
+        <option value="😢">😢 難過</option>
+        <option value="😐">😐 普通</option>
+        <option value="😡">😡 生氣</option>
+        <option value="😴">😴 疲累</option>
+      </select>
+      <textarea id="diaryText" placeholder="寫下今天的心情..." rows="5"></textarea>
+      <button onclick="submitDiary()">儲存日記</button>
+    </div>
+  </div>
+
+  <div id="history-section" style="display: none;">
+    <div class="container">
+      <h2>歷史紀錄</h2>
+
+      <!-- 日記彈窗 -->
+       
+      <div id="diary-modal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close-btn" onclick="closeModal()">×</span>
+          <h3 id="modal-date"></h3>
+
+          <label>😊 心情：</label>
+            <select id="modal-mood">
+              <option value="😀">😀 開心</option>
+              <option value="😢">😢 難過</option>
+              <option value="😐">😐 普通</option>
+              <option value="😡">😡 生氣</option>
+              <option value="😴">😴 疲累</option>
+            </select>
+
+          <label>🎵 音樂連結：</label>
+          <input type="text" id="modal-music" class="modal-input"><br>
+          <div id="modal-music-container"></div>
+          
+
+
+          <label>📝 日記內容：</label><br>
+          <textarea id="modal-text" class="modal-textarea"></textarea><br>
+
+          <button onclick="saveEditedDiary()">💾 儲存</button>
+        </div>
+      </div>
+
+      <!-- 月份切換 -->
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+        <button onclick="changeMonth(-1)" style="width: 100px;">← </button>
+        <h3 id="calendar-title"></h3>
+        <button onclick="changeMonth(1)" style="width: 100px;"> →</button>
+      </div>
+
+      <!-- 日曆區 -->
+      <div class="container">
+        <div id="calendar" class="calendar"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="background-section" style="display:none;">
+    <div class="container">
+      <h2>背景圖片設定</h2>
+      <input type="text" id="bg-url" placeholder="輸入背景圖片 URL">
+      <button onclick="changeBackground()">設定背景</button>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

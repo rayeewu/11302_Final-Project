@@ -1,0 +1,235 @@
+body {
+  background-image: url("background.jpg"); /* ✅ 背景圖片作為裝飾 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px);
+  z-index: -1;
+}
+
+
+/* ✅ 讓主要內容不受背景干擾 */
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px ;
+  background-color: #ffffffd9; 
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  position: relative;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #3b5998;
+}
+h3{
+  text-align: center;
+  color: #3b5998;
+  font-size: 1.5rem;
+}
+
+#auth-section{
+  position: fixed;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+input, select, textarea, button {
+  justify-content: center;
+  display: field;
+  width: 95%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+#home-section {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+}
+#welcome-slogan {
+    display: block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+.center-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#vinyl-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+
+}
+
+#vinyl {
+  animation: spin 10s linear infinite;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#menu-button {
+  position: fixed;
+  background-color: #bdc1caa2;
+  color: white;
+  border: none;
+  width: 50px;
+  top: 15px;
+  right: 20px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+
+#side-menu {
+    position: fixed;
+    top: 0;
+    right: -250px; /* 預設隱藏 */
+    width: 200px;
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    padding-top: 80px;
+    transition: right 0.3s ease-in-out;
+}
+
+#side-menu.show {
+    right: 0; /* 顯示選單 */
+}
+button {
+  background-color: #3b5998;
+  color: white;
+  border: none;
+  padding: auto;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+  background-color: rgb(132, 168, 198);
+  transform: scale(1.05);
+}
+
+.diary-entry {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+.diary-entry:hover {
+  background-color: #e3e6f3;
+}
+
+
+.calendar-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+
+.calendar-table th, .calendar-table td {
+  border: 1px solid #ccc;
+  width: 14.2%;
+  height: 80px;
+  vertical-align: top;
+  text-align: left;
+  padding: 5px;
+}
+
+.calendar-table td.has-diary {
+  background-color: #e3f2fd;
+  cursor: pointer;
+}
+
+.diary-cell {
+  font-size: 0.9em;
+}
+
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  z-index: 1000;
+}
+.modal-content {
+  max-height: 80vh; /* 限制最大高度 */
+  overflow-y: auto; /* 允許垂直滾動 */
+  padding: 20px;
+  background: white;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  border-radius: 10px;
+
+}
+
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  z-index: 1010;
+}
+.modal-input {
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.modal-textarea {
+  width: 100%;
+  height: 100px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.modal.hidden {
+  display: none;
+}
