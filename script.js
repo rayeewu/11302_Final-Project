@@ -323,3 +323,15 @@ function changeBackground() {
     alert("儲存失敗，請稍後再試。");
   });
 }
+
+  const audio = document.getElementById("bg-music");
+  const btn   = document.getElementById("toggle-music");
+  btn.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play();
+      btn.textContent = "🔊";
+    } else {
+      audio.pause();
+      btn.textContent = "🔇";
+    }
+  });
